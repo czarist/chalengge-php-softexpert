@@ -1,6 +1,9 @@
 <?php
 
-use Database;
+namespace models;
+
+use config\Database;
+use PDO;
 
 class CategoryModel
 {
@@ -19,6 +22,8 @@ class CategoryModel
             $this->description = $data['description'];
             $this->created = isset($data['created']) ? $data['created'] : date('Y-m-d H:i:s');
             $this->modified = isset($data['modified']) ? $data['modified'] : date('Y-m-d H:i:s');
+        } else {
+            echo 'empty data';
         }
     }
 
@@ -52,9 +57,19 @@ class CategoryModel
         return $this->created;
     }
 
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
     public function getModified()
     {
         return $this->modified;
+    }
+
+    public function setModified($modified)
+    {
+        $this->modified = $modified;
     }
 
     public function save()
@@ -66,7 +81,7 @@ class CategoryModel
         }
     }
 
-    private function create()
+    public function create()
     {
         $db = Database::getInstance()->getConnection();
         $stmt = $db->prepare('INSERT INTO categories (name, description, created, modified) VALUES (:name, :description, :created, :modified)');
@@ -76,19 +91,18 @@ class CategoryModel
         $stmt->bindParam(':modified', $this->modified);
         $stmt->execute();
         $this->id = $db->lastInsertId();
-        return $this;
     }
 
-    private function update()
+    public function update()
     {
         $db = Database::getInstance()->getConnection();
-        $stmt = $db->prepare('UPDATE categories SET name = :name, description = :description, modified = :modified WHERE id = :id');
-        $stmt->bindParam(':id', $this->id);
+        $stmt = $db->prepare('UPDATE categories SET name = :name, description = :description, created = :created, modified = :modified WHERE id = :id');
         $stmt->bindParam(':name', $this->name);
         $stmt->bindParam(':description', $this->description);
+        $stmt->bindParam(':created', $this->created);
         $stmt->bindParam(':modified', $this->modified);
+        $stmt->bindParam(':id', $this->id);
         $stmt->execute();
-        return $this;
     }
 
     public function delete()
@@ -103,11 +117,22 @@ class CategoryModel
     {
         $db = Database::getInstance()->getConnection();
         $stmt = $db->prepare('SELECT * FROM categories WHERE id = :id');
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':id', $id["id"]);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ? new CategoryModel($result) : null;
     }
+
+    public static function showById($id)
+    {
+        $db = Database::getInstance()->getConnection();
+        $stmt = $db->prepare('SELECT * FROM categories WHERE id = :id');
+        $stmt->bindParam(':id', $id["id"]);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result : null;
+    }
+
     public static function getAll()
     {
         $db = Database::getInstance()->getConnection();
@@ -118,6 +143,11 @@ class CategoryModel
         foreach ($results as $result) {
             $categories[] = new CategoryModel($result);
         }
-        return $categories;
+
+        $categoryModels = array_map(function ($category) {
+            return get_object_vars($category);
+        }, $categories);
+
+        return $categoryModels;
     }
 }

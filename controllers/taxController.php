@@ -1,6 +1,10 @@
 <?php
 
-use TaxModel;
+namespace controllers;
+
+use models\TaxModel;
+
+require_once __DIR__ . '/../models/taxModel.php';
 
 class TaxController
 {

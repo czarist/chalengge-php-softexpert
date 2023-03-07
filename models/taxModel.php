@@ -1,6 +1,9 @@
 <?php
 
-use Database;
+namespace models;
+
+use config\Database;
+use PDO;
 
 class TaxModel
 {
