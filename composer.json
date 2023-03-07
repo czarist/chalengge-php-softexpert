@@ -1,0 +1,17 @@
+{
+    "name": "cezar/shop-api-crud",
+    "autoload": {
+        "psr-4": {
+            "Cezar\\ShopApiCrud\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Cezar Trentin",
+            "email": "czartrentin@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
+}
