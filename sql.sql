@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS products (
     FOREIGN KEY (category_id) REFERENCES categories (id),
     FOREIGN KEY (tax_id) REFERENCES tax (id)
 );
+--  insert tax 
 INSERT INTO tax (name, rate, created, modified)
 VALUES (
         'ICMS',
@@ -55,6 +56,7 @@ VALUES (
         '2023-03-07 09:00:00',
         '2023-03-07 09:00:00'
     );
+--  insert products 
 INSERT INTO products (
         name,
         description,
@@ -78,7 +80,7 @@ VALUES (
         'New Samsung smartphone',
         7999,
         1,
-        1,
+        2,
         NOW(),
         NOW()
     ),
@@ -87,7 +89,7 @@ VALUES (
         'The latest Sony console',
         4999,
         2,
-        2,
+        3,
         NOW(),
         NOW()
     ),
@@ -105,7 +107,7 @@ VALUES (
         'New Canon camera',
         11999,
         3,
-        3,
+        1,
         NOW(),
         NOW()
     ),
@@ -113,8 +115,8 @@ VALUES (
         'Nikon Z7 II',
         'New Nikon camera',
         13999,
-        3,
-        3,
+        2,
+        2,
         NOW(),
         NOW()
     ),
@@ -122,8 +124,8 @@ VALUES (
         'LG OLED TV',
         'New LG TV',
         9999,
-        4,
-        1,
+        2,
+        3,
         NOW(),
         NOW()
     ),
@@ -131,8 +133,8 @@ VALUES (
         'Samsung QLED TV',
         'New Samsung TV',
         8999,
-        4,
-        1,
+        3,
+        2,
         NOW(),
         NOW()
     ),
@@ -141,7 +143,7 @@ VALUES (
         'New Lenovo laptop',
         9999,
         2,
-        2,
+        1,
         NOW(),
         NOW()
     ),
@@ -154,6 +156,7 @@ VALUES (
         NOW(),
         NOW()
     );
+--  insert categories 
 INSERT INTO categories (name, description, created, modified)
 VALUES (
         'Eletrônicos',

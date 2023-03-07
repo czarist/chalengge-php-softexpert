@@ -14,16 +14,18 @@ class CategoryModel
     private $created;
     private $modified;
 
+    private $conn;
+
     public function __construct($data = [])
     {
+        $this->conn = Database::getInstance()->getConnection();
+
         if (!empty($data)) {
             $this->id = isset($data['id']) ? intval($data['id']) : null;
             $this->name = $data['name'];
             $this->description = $data['description'];
             $this->created = isset($data['created']) ? $data['created'] : date('Y-m-d H:i:s');
             $this->modified = isset($data['modified']) ? $data['modified'] : date('Y-m-d H:i:s');
-        } else {
-            echo 'empty data';
         }
     }
 
@@ -83,20 +85,18 @@ class CategoryModel
 
     public function create()
     {
-        $db = Database::getInstance()->getConnection();
-        $stmt = $db->prepare('INSERT INTO categories (name, description, created, modified) VALUES (:name, :description, :created, :modified)');
+        $stmt = $this->conn->prepare('INSERT INTO categories (name, description, created, modified) VALUES (:name, :description, :created, :modified)');
         $stmt->bindParam(':name', $this->name);
         $stmt->bindParam(':description', $this->description);
         $stmt->bindParam(':created', $this->created);
         $stmt->bindParam(':modified', $this->modified);
         $stmt->execute();
-        $this->id = $db->lastInsertId();
+        $this->id = $this->conn->lastInsertId();
     }
 
     public function update()
     {
-        $db = Database::getInstance()->getConnection();
-        $stmt = $db->prepare('UPDATE categories SET name = :name, description = :description, created = :created, modified = :modified WHERE id = :id');
+        $stmt = $this->conn->prepare('UPDATE categories SET name = :name, description = :description, created = :created, modified = :modified WHERE id = :id');
         $stmt->bindParam(':name', $this->name);
         $stmt->bindParam(':description', $this->description);
         $stmt->bindParam(':created', $this->created);
@@ -107,8 +107,7 @@ class CategoryModel
 
     public function delete()
     {
-        $db = Database::getInstance()->getConnection();
-        $stmt = $db->prepare('DELETE FROM categories WHERE id = :id');
+        $stmt = $this->conn->prepare('DELETE FROM categories WHERE id = :id');
         $stmt->bindParam(':id', $this->id);
         $stmt->execute();
     }
@@ -116,7 +115,7 @@ class CategoryModel
     public static function getById($id)
     {
         $db = Database::getInstance()->getConnection();
-        $stmt = $db->prepare('SELECT * FROM categories WHERE id = :id');
+        $stmt = $db->conn->prepare('SELECT * FROM categories WHERE id = :id');
         $stmt->bindParam(':id', $id["id"]);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -126,7 +125,7 @@ class CategoryModel
     public static function showById($id)
     {
         $db = Database::getInstance()->getConnection();
-        $stmt = $db->prepare('SELECT * FROM categories WHERE id = :id');
+        $stmt = $db->conn->prepare('SELECT * FROM categories WHERE id = :id');
         $stmt->bindParam(':id', $id["id"]);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
