@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../models/categoryModel.php';
+use CategoryModel;
 
 class CategoryController
 {
