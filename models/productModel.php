@@ -32,25 +32,26 @@ class productModel
         return $result ? $result : false;
     }
 
-    public function createProduct($name, $description, $price, $category_id, $tax_id)
+    public function createProduct($name, $description, $price, $category_id, $tax_id, $img)
     {
         $now = date('Y-m-d H:i:s');
-        $stmt = $this->db->prepare("INSERT INTO products (name, description, price, category_id, tax_id, created, modified) VALUES (:name, :description, :price, :category_id, :tax_id, :created, :modified)");
+        $stmt = $this->db->prepare("INSERT INTO products (name, description, price, category_id, tax_id, img, created, modified) VALUES (:name, :description, :price, :category_id, :tax_id, :img, :created, :modified)");
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':price', $price);
         $stmt->bindParam(':category_id', $category_id);
         $stmt->bindParam(':tax_id', $tax_id);
+        $stmt->bindParam(':img', $img);
         $stmt->bindParam(':created', $now);
         $stmt->bindParam(':modified', $now);
         $stmt->execute();
         return true;
     }
 
-    public function updateProduct($id, $name, $description, $price, $category_id, $tax_id)
+    public function updateProduct($id, $name, $description, $price, $category_id, $img, $tax_id)
     {
-        $stmt = $this->db->prepare("UPDATE products SET name = ?, description = ?, price = ?, category_id = ?, tax_id = ? WHERE id = ?");
-        $stmt->execute([$name, $description, $price, $category_id, $tax_id, $id['id']]);
+        $stmt = $this->db->prepare("UPDATE products SET name = ?, description = ?, price = ?, category_id = ?, img = ?, tax_id = ? WHERE id = ?");
+        $stmt->execute([$name, $description, $price, $category_id, $img, $tax_id, $id['id']]);
         return true;
     }
 
