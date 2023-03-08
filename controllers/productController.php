@@ -4,8 +4,6 @@ namespace controllers;
 
 use models\productModel;
 
-require_once __DIR__ . '/../models/productModel.php';
-
 class productController
 {
 

@@ -4,8 +4,6 @@ namespace controllers;
 
 use models\CategoryModel;
 
-require_once __DIR__ . '/../models/categoryModel.php';
-
 class CategoryController
 {
 

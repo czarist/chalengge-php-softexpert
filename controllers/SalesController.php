@@ -4,8 +4,6 @@ namespace controllers;
 
 use models\salesModel;
 
-require_once __DIR__ . '/../models/salesModel.php';
-
 class salesController
 {
 
@@ -55,6 +53,8 @@ class salesController
     public function store()
     {
         $data = $_POST;
+        //$data['items_list'] =  json_encode([$data['items_list']]);
+
         $result = $this->salesModel->createSales(
             $data['buyer_name'],
             $data['buyer_cpf'],
