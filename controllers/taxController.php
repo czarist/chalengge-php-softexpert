@@ -21,6 +21,7 @@ class TaxController
         if (!$taxes) {
             header('HTTP/1.0 404 Not Found');
             header('Content-Type: application/json');
+            header('Access-Control-Allow-Origin: *');
             echo json_encode(['error' => 'Taxes not found.']);
 
             return;
@@ -28,6 +29,7 @@ class TaxController
 
         header('HTTP/1.1 200 OK');
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode($taxes);
 
         return true;
@@ -40,6 +42,7 @@ class TaxController
         if (!$tax) {
             header('HTTP/1.0 404 Not Found');
             header('Content-Type: application/json');
+            header('Access-Control-Allow-Origin: *');
             echo json_encode(['error' => 'Tax not found.']);
 
             return;
@@ -47,6 +50,7 @@ class TaxController
 
         header('HTTP/1.1 200 OK');
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode($tax);
 
         return true;
@@ -62,12 +66,14 @@ class TaxController
         if (!$tax) {
             header('HTTP/1.1 400 Bad Request');
             header('Content-Type: application/json');
+            header('Access-Control-Allow-Origin: *');
             echo json_encode(['error' => 'Bad Request.']);
 
             return;
         }
         header('HTTP/1.1 200 OK');
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode(['message' => 'Tax created successfully.']);
 
         return true;
@@ -84,6 +90,7 @@ class TaxController
         if (!$tax) {
             header('HTTP/1.0 404 Not Found');
             header('Content-Type: application/json');
+            header('Access-Control-Allow-Origin: *');
             echo json_encode(['error' => 'Tax not found.']);
 
             return;
@@ -91,6 +98,7 @@ class TaxController
 
         header('HTTP/1.1 200 OK');
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode(['message' => 'Tax updated successfully.']);
 
         return true;
@@ -103,6 +111,7 @@ class TaxController
         if (!$result) {
             header('HTTP/1.0 404 Not Found');
             header('Content-Type: application/json');
+            header('Access-Control-Allow-Origin: *');
             echo json_encode(['error' => 'Tax not found.']);
 
             return;
@@ -110,6 +119,7 @@ class TaxController
 
         header('HTTP/1.1 200 OK');
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode(['message' => 'Tax deleted successfully.']);
 
         return true;

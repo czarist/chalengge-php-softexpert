@@ -21,12 +21,14 @@ class productController
         if (!$products) {
             header('HTTP/1.0 404 Not Found');
             header('Content-Type: application/json');
+            header('Access-Control-Allow-Origin: *');
             echo json_encode(['error' => 'Products not found.']);
             return;
         }
 
         header('HTTP/1.1 200 OK');
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode($products);
 
         return true;
@@ -39,12 +41,14 @@ class productController
         if ($product === false) {
             header('HTTP/1.1 404 Not Found');
             header('Content-Type: application/json');
+            header('Access-Control-Allow-Origin: *');
             echo json_encode(['error' => 'Product not found']);
             return;
         }
 
         header('HTTP/1.1 200 OK');
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode($product);
 
         return true;
@@ -58,6 +62,7 @@ class productController
         if (!$result) {
             header('HTTP/1.1 400 Bad Request');
             header('Content-Type: application/json');
+            header('Access-Control-Allow-Origin: *');
             echo json_encode(['error' => 'Failed to create product']);
 
             return;
@@ -65,6 +70,7 @@ class productController
 
         header('HTTP/1.1 201 Created');
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode(['success' => 'Product created']);
 
         return true;
@@ -78,6 +84,7 @@ class productController
         if (!$result) {
             header('HTTP/1.1 400 Bad Request');
             header('Content-Type: application/json');
+            header('Access-Control-Allow-Origin: *');
             echo json_encode(['error' => 'Failed to update product']);
 
             return;
@@ -85,6 +92,7 @@ class productController
 
         header('HTTP/1.1 200 OK');
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode(['success' => 'Product updated']);
 
         return true;
@@ -97,12 +105,14 @@ class productController
         if (!$result) {
             header('HTTP/1.1 400 Bad Request');
             header('Content-Type: application/json');
+            header('Access-Control-Allow-Origin: *');
             echo json_encode(['error' => 'Failed to delete product']);
             return;
         }
 
         header('HTTP/1.1 200 OK');
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode(['success' => 'Product deleted']);
 
         return true;

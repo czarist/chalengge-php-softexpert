@@ -21,12 +21,14 @@ class salesController
         if (!$sales) {
             header('HTTP/1.0 404 Not Found');
             header('Content-Type: application/json');
+            header('Access-Control-Allow-Origin: *');
             echo json_encode(['error' => 'Sales not found.']);
             return;
         }
 
         header('HTTP/1.1 200 OK');
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode($sales);
 
         return true;
@@ -39,12 +41,14 @@ class salesController
         if ($sale === false) {
             header('HTTP/1.1 404 Not Found');
             header('Content-Type: application/json');
+            header('Access-Control-Allow-Origin: *');
             echo json_encode(['error' => 'sale not found']);
             return;
         }
 
         header('HTTP/1.1 200 OK');
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode($sale);
 
         return true;
@@ -65,6 +69,7 @@ class salesController
         if (!$result) {
             header('HTTP/1.1 400 Bad Request');
             header('Content-Type: application/json');
+            header('Access-Control-Allow-Origin: *');
             echo json_encode(['error' => 'Failed to create sale']);
 
             return;
@@ -72,6 +77,7 @@ class salesController
 
         header('HTTP/1.1 201 Created');
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode(['success' => 'sale created']);
 
         return true;
@@ -84,12 +90,14 @@ class salesController
         if (!$result) {
             header('HTTP/1.1 400 Bad Request');
             header('Content-Type: application/json');
+            header('Access-Control-Allow-Origin: *');
             echo json_encode(['error' => 'Failed to delete sale']);
             return;
         }
 
         header('HTTP/1.1 200 OK');
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode(['success' => 'sale deleted']);
 
         return true;

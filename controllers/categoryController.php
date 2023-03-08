@@ -14,12 +14,14 @@ class CategoryController
         if (!$categories) {
             header('HTTP/1.0 404 Not Found');
             header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
             echo json_encode(['error' => 'Categories not found.']);
             return;
         }
 
         header('HTTP/1.1 200 OK');
         header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
         echo json_encode($categories);
 
         return true;
@@ -32,12 +34,14 @@ class CategoryController
         if (!$category) {
             header('HTTP/1.0 404 Not Found');
             header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
             echo json_encode(['error' => 'Category not found.']);
             return;
         }
 
         header('HTTP/1.1 200 OK');
         header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
         echo json_encode($category);
 
         return true;
@@ -57,12 +61,14 @@ class CategoryController
         if (!$category) {
             header('HTTP/1.1 400 Bad Request');
             header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
             echo json_encode(['error' => 'Bad Request.']);
             return;
         }
 
         header('HTTP/1.1 200 OK');
         header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
         echo json_encode(['message' => 'Category created successfully.']);
 
         return true;
@@ -81,12 +87,14 @@ class CategoryController
         if (!$category) {
             header('HTTP/1.0 404 Not Found');
             header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
             echo json_encode(['error' => 'Category not found.']);
             return;
         }
 
         header('HTTP/1.1 200 OK');
         header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
         echo json_encode(['message' => 'Category updated successfully.']);
 
         return true;
@@ -99,6 +107,7 @@ class CategoryController
         if (!$category) {
             header('HTTP/1.0 404 Not Found');
             header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
             echo json_encode(['error' => 'Category not found.']);
             return;
         }
@@ -107,6 +116,7 @@ class CategoryController
 
         header('HTTP/1.1 200 OK');
         header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
         echo json_encode(['message' => 'Category deleted successfully.']);
 
         return true;
