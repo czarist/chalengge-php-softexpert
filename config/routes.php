@@ -24,5 +24,10 @@ $dispatcher = FastRoute\simpleDispatcher(function (RouteCollector $r) {
     $r->addRoute('POST', '/api/taxes', 'TaxController@store');
     $r->addRoute('POST', '/api/taxes/{id:\d+}', 'TaxController@update');
     $r->addRoute('DELETE', '/api/taxes/{id:\d+}', 'TaxController@destroy');
-});
 
+    //sales
+    $r->addRoute('GET', '/api/sales', 'SalesController@index');
+    $r->addRoute('GET', '/api/sales/{id:\d+}', 'SalesController@show');
+    $r->addRoute('POST', '/api/sales', 'SalesController@store');
+    $r->addRoute('DELETE', '/api/sales/{id:\d+}', 'SalesController@destroy');
+});
