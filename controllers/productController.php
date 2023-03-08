@@ -38,7 +38,7 @@ class productController
     {
         $product = $this->productModel->getProductById($id);
 
-        if (!$product) {
+        if ($product === false) {
             header('HTTP/1.1 404 Not Found');
             header('Content-Type: application/json');
             echo json_encode(['error' => 'Product not found']);
@@ -95,7 +95,7 @@ class productController
     public function destroy($id)
     {
         $result = $this->productModel->deleteProduct($id);
-        
+
         if (!$result) {
             header('HTTP/1.1 400 Bad Request');
             header('Content-Type: application/json');

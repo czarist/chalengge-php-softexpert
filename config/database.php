@@ -26,7 +26,6 @@ class Database
             $dsn = "pgsql:host={$host};port={$port};dbname={$dbname}";
             $this->pdo = new PDO($dsn, $user, $password);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            //echo 'Connection bimbou: ';
         } catch (PDOException $e) {
             echo 'Connection failed: ' . $e->getMessage();
             exit();

@@ -24,9 +24,12 @@ class productModel
 
     public function getProductById($id)
     {
-        $stmt = $this->db->prepare("SELECT * FROM products WHERE id = ?");
-        $stmt->execute([$id['id']]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $query = "SELECT * FROM products WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id', $id['id']);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result : false;
     }
 
     public function createProduct($name, $description, $price, $category_id, $tax_id)
@@ -41,17 +44,20 @@ class productModel
         $stmt->bindParam(':created', $now);
         $stmt->bindParam(':modified', $now);
         $stmt->execute();
+        return true;
     }
 
     public function updateProduct($id, $name, $description, $price, $category_id, $tax_id)
     {
         $stmt = $this->db->prepare("UPDATE products SET name = ?, description = ?, price = ?, category_id = ?, tax_id = ? WHERE id = ?");
-        return $stmt->execute([$name, $description, $price, $category_id, $tax_id, $id['id']]);
+        $stmt->execute([$name, $description, $price, $category_id, $tax_id, $id['id']]);
+        return true;
     }
 
     public function deleteProduct($id)
     {
         $stmt = $this->db->prepare("DELETE FROM products WHERE id = ?");
-        return $stmt->execute([$id['id']]);
+        $stmt->execute([$id['id']]);
+        return true;
     }
 }

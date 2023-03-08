@@ -21,6 +21,7 @@ class TaxController
 
         if (!$taxes) {
             header('HTTP/1.0 404 Not Found');
+            header('Content-Type: application/json');
             echo json_encode(['error' => 'Taxes not found.']);
 
             return;

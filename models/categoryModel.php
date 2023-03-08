@@ -115,21 +115,21 @@ class CategoryModel
     public static function getById($id)
     {
         $db = Database::getInstance()->getConnection();
-        $stmt = $db->conn->prepare('SELECT * FROM categories WHERE id = :id');
+        $stmt = $db->prepare('SELECT * FROM categories WHERE id = :id');
         $stmt->bindParam(':id', $id["id"]);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result ? new CategoryModel($result) : null;
+        return $result ? new CategoryModel($result) : false;
     }
 
     public static function showById($id)
     {
         $db = Database::getInstance()->getConnection();
-        $stmt = $db->conn->prepare('SELECT * FROM categories WHERE id = :id');
+        $stmt = $db->prepare('SELECT * FROM categories WHERE id = :id');
         $stmt->bindParam(':id', $id["id"]);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result ? $result : null;
+        return $result ? $result : false;
     }
 
     public static function getAll()
