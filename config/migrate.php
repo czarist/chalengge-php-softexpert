@@ -1,10 +1,6 @@
 <?php
 require_once 'env.php';
 
-$dsn = "pgsql:host=$host;port={$port};dbname=$dbname;user=$user;password=$password";
-
-$dbconn = new PDO($dsn);
-
 $sql = file_get_contents('sql/migrate.sql');
 
 $result = $dbconn->exec($sql);

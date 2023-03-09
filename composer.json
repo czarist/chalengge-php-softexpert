@@ -1,5 +1,6 @@
 {
     "name": "cezar/shop-api-crud",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Cezar\\ShopApiCrud\\": "src/"
@@ -12,6 +13,7 @@
         }
     ],
     "require": {
+        "php": "^8.0.*",
         "vlucas/phpdotenv": "^5.5",
         "nikic/fast-route": "^1.3"
     }
