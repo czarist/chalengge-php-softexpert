@@ -33,7 +33,7 @@
 
     8.  Clone the Frontend project using git clone.     
         Clone este projeto usando git clone.
-        git clone https://github.com/czarist/-chalengge-php-softexpert-frontend
+        git clone https://github.com/czarist/challenge-php-softexpert-frontend
 
     10. Open the frontend directory and run "npm install" in the terminal. 
         Abra o diretório do frontend e execute "npm install" no terminal.
