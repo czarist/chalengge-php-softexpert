@@ -32,7 +32,7 @@ class productModel
         return $result ? $result : false;
     }
 
-    public function createProduct($name, $description, $price, $category_id, $tax_id, $img)
+    public function createProduct($name, $description, $price, $category_id, $tax_id, string $img)
     {
         $now = date('Y-m-d H:i:s');
         $stmt = $this->db->prepare("INSERT INTO products (name, description, price, category_id, tax_id, img, created, modified) VALUES (:name, :description, :price, :category_id, :tax_id, :img, :created, :modified)");
@@ -48,10 +48,19 @@ class productModel
         return true;
     }
 
-    public function updateProduct($id, $name, $description, $price, $category_id, $img, $tax_id)
+    public function updateProduct($id, $name, $description, $price, $category_id, $tax_id, $img)
     {
-        $stmt = $this->db->prepare("UPDATE products SET name = ?, description = ?, price = ?, category_id = ?, img = ?, tax_id = ? WHERE id = ?");
-        $stmt->execute([$name, $description, $price, $category_id, $img, $tax_id, $id['id']]);
+        $now = date('Y-m-d H:i:s');
+        $stmt = $this->db->prepare("UPDATE products SET name = :name, description = :description, price = :price, category_id = :category_id, img = :img, modified = :modified, tax_id = :tax_id WHERE id = :id");
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':price', $price);
+        $stmt->bindParam(':category_id', $category_id);
+        $stmt->bindParam(':tax_id', $tax_id);
+        $stmt->bindParam(':img', $img);
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':modified', $now);
+        $stmt->execute();
         return true;
     }
 

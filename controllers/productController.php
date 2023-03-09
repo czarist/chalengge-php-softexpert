@@ -79,7 +79,8 @@ class productController
     public function update($id)
     {
         $data = $_POST;
-        $result = $this->productModel->updateProduct($id, $data['name'], $data['description'], $data['price'], $data['category_id'], $data['tax_id'], $data['img']);
+        $data['img'] = (string)$data['img'];
+        $result = $this->productModel->updateProduct($id['id'], $data['name'], $data['description'], $data['price'], $data['category_id'], $data['tax_id'], $data['img']);
 
         if (!$result) {
             header('HTTP/1.1 400 Bad Request');
