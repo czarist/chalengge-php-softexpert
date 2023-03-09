@@ -4,7 +4,7 @@
 
     1. PHP version upto 8.0.*    
     2. Composer version 2.2.*   
-    3. Postgres version 10.23 
+    3. PostgreSQL version 10.23 
     4. vlucas/phpdotenv 5.5
     5. nikic/fast-route 1.3 
 
@@ -13,13 +13,13 @@
     1.  Clone this project using git clone. 
         Clone este projeto usando git clone.
 
-    2.  Copy a fresh .env file .
-        Copie um novo arquivo .env .
+    2.  Copy a fresh .env file
+        Copie um novo arquivo .env
 
     3.  Update .env file by adding database information like shop.  
         Atualize o arquivo .env adicionando informações do banco de dados, como shop.
 
-    4.  Go to project root folder.Open git bash or terminal and run composer install. 
+    4.  Go to project root folde. Open git bash or terminal and run composer install. 
         Vá para a pasta raiz do projeto. Abra o git bash ou terminal e execute composer install.
 
     5.  Run "php config/migrate.php" in the terminal.
@@ -28,17 +28,20 @@
     6.  Run "php config/seeds.php" in the terminal.   
         Execute "php config/seeds.php" no terminal.
 
-    7.  Clone the Frontend project using git clone.     
+    7.  Run "php -S locahoost:8080" in the terminal.
+        Execute "php -S locahoost:8080" no terminal.    
+
+    8.  Clone the Frontend project using git clone.     
         Clone este projeto usando git clone.
         git clone https://github.com/czarist/-chalengge-php-softexpert-frontend
 
-    8.  Open the frontend directory and run "npm install" in the terminal. 
+    10. Open the frontend directory and run "npm install" in the terminal. 
         Abra o diretório do frontend e execute "npm install" no terminal.
 
-    9.  Run "npm start" in the terminal.
+    11. Run "npm start" in the terminal.
         Execute "npm start" no terminal.
 
-    10. Follow the instructions in the images to test the endpoints using Postman or similar.
+    12. Follow the instructions in the images to test the endpoints using Postman or similar.
         Siga as instruções nas imagens para testar os endpoints usando Postman ou similar.
 
 ### GET ALL
