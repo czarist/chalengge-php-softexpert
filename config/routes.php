@@ -32,6 +32,9 @@ $dispatcher = FastRoute\simpleDispatcher(function (RouteCollector $r) {
     $r->addRoute('DELETE', '/api/sales/{id:\d+}', 'SalesController@destroy');
 });
 
+header('Access-Control-Allow-Methods: *');
+header("Access-Control-Allow-Headers: Content-Type");
+
 $httpMethod = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
 
@@ -45,6 +48,7 @@ if (($pos = strpos($uri, '?')) !== false) {
 $uri = rtrim($uri, '/');
 
 $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
+
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
         header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
