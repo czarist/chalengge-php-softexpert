@@ -24,12 +24,14 @@
 
     5.  Run "php config/migrate.php" in the terminal.
         Execute "php config/migrate.php" no terminal.
+        (Possible false positive from the antivirus in this part / Possível falso positivo do antivírus nesta parte.)
 
     6.  Run "php config/seeds.php" in the terminal.   
         Execute "php config/seeds.php" no terminal.
+        (Possible false positive from the antivirus in this part / Possível falso positivo do antivírus nesta parte.)
 
-    7.  Run "php -S locahoost:8080" in the terminal.
-        Execute "php -S locahoost:8080" no terminal.    
+    7.  Run "php -S localhost:8080" in the terminal.
+        Execute "php -S localhost:8080" no terminal.    
 
     8.  Clone the Frontend project using git clone.     
         Clone este projeto usando git clone.
