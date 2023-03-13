@@ -3,23 +3,54 @@
 namespace models;
 
 use config\Database;
+use models\TaxModel;
+
 use PDO;
 
 class productModel
 {
 
     private $db;
+    private $taxModel;
+
+    private function add_percentage($value, $percentage)
+    {
+        $percentage_value = $value * ($percentage / 100);
+        $total_value = $value + $percentage_value;
+        return $total_value;
+    }
+
 
     public function __construct()
     {
         $this->db = Database::getInstance()->getConnection();
+        $this->taxModel = new TaxModel();
     }
 
     public function getProducts()
     {
         $stmt = $this->db->prepare("SELECT * FROM products");
+        $taxes = $this->taxModel->getAllTaxes();
+
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        for ($i = 0; $i < count($products); $i++) {
+            $products[$i]["price_with_no_taxes"] = $products[$i]["price"];
+        }
+
+        foreach ($taxes as $tax) {
+            for ($i = 0; $i < count($products); $i++) {
+                if ($products[$i]['tax_id'] == $tax['id']) {
+                    $taxed_value = $this->add_percentage($products[$i]['price'], $tax['rate']);
+                    $products[$i]['price'] = $taxed_value;
+                    $products[$i]['price'] = number_format($products[$i]['price'], 2, '.', '');
+                    $products[$i]['price_with_no_taxes'] = number_format($products[$i]['price_with_no_taxes'], 2, '.', '');
+                };
+            }
+        }
+
+        return $products;
     }
 
     public function getProductById($id)

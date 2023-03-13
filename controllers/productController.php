@@ -17,7 +17,7 @@ class productController
     public function index()
     {
         $products = $this->productModel->getProducts();
-
+ 
         if (!$products) {
             header('HTTP/1.0 404 Not Found');
             header('Content-Type: application/json');
