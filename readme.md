@@ -16,8 +16,8 @@
     2.  Copy a fresh .env file
         Copie um novo arquivo .env
 
-    3.  Update .env file by adding database information like shop.  
-        Atualize o arquivo .env adicionando informações do banco de dados, como shop.
+    3.  Update .env file by adding database information like shop. (try ports 5433 and 5432)
+        Atualize o arquivo .env adicionando informações do banco de dados, como shop. (tente as portas 5433 e 5432)
 
     4.  Go to project root folde. Open git bash or terminal and run composer install. 
         Vá para a pasta raiz do projeto. Abra o git bash ou terminal e execute composer install.
